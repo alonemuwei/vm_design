@@ -1,0 +1,8 @@
+<!--fonter.html-->
+{% block footer  %}
+	{% if now %}
+	<p style='font-family:华文楷体;font-size:14pt;font-weight=normal;'>{{now}}</p>
+	{% else %}
+	<p style='font-family:华文楷体;font-size:14pt;'>本系统为鼎甲内部使用</p>
+	{% endif %}
+{% endblock %}

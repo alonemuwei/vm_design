@@ -1,0 +1,65 @@
+<!--user.html-->
+{% extends 'base_o.html' %}
+{% block title %}用户管理{% endblock %}
+{% block headmessage %} 
+{% endblock %}
+{% block content %}
+<div class="con">
+{% load staticfiles %}
+<div class="pic"><img src="{% static "images/build.png"  %}" width=150></div>
+</div>
+<br>
+<div class='container'>
+<div class='row'>
+<div class='col-md-8'>
+<div class='panel panel-default'>
+<div class='panel-heading' aign=center>
+<form name='build' action='.' method='GET'>
+	<label for='name'>虚拟机名字：</label>
+	<input id='name' type='text' name='name'>
+	<br>
+	<label for='iso'>镜像：</label>
+	<select name='iso'>
+	{% for iso in iso %}
+	<option value='{{iso.name}}'>{{iso.name}}</option>
+	{% endfor %}
+	</select>	
+	<br>
+	<label for='cpu'>CPU数量</label>
+	<select name='cpu'>
+ 	{% for cpu in cpu %}
+	 <option value='{{cpu}}'>{{cpu}}</option>
+	 {% endfor %}
+	</select>
+	<br>
+	<label for='memory'>内存大小</label>
+	<select name='memory'>
+	 {% for memory in memory %}
+	 <option value='{{memory}}'>{{memory}}</option>
+	 {% endfor %}
+	</select>
+	<br>
+	<label for='disk'>磁盘大小</label>
+	<select name='disk'>
+	{% for disk in disk %}
+	<option value='{{disk}}'>{{disk}}</option>
+	{% endfor %}
+	</select>
+	<br>
+	<label for='bit'>操作系统位数</label>
+        <select name='bit'>
+        {% for bit in bit %}
+        <option value='{{bit}}'>{{bit}}</option>
+        {% endfor %}
+        </select>
+	<br>
+	<label for='ip'>IP地址</label>
+	<input id='ip' type='text' name='ip'>
+	<br>
+	<label for='volume'>卷大小</label>
+	<input id='volume' type='text' name='volume'>
+	<br>
+	<input type='submit' value='提交'>		
+</form> 
+{% endblock %}
+

@@ -1,0 +1,32 @@
+<!--user.html-->
+{% extends 'base.html' %}
+{% block title %}用户管理{% endblock %}
+{% block headmessage %} 
+{% endblock %}
+{% block content %} 
+<h2 style='font-family:华文楷体;font-weight:blod;font-size:25pt'>用户管理</h2>
+<!--<a style-'font-family=宋体;font-size=8pt;' href='/'>返回</a>-->
+{% for p in users %}
+{% if forloop.first %}
+<table>
+  <tr bgcolor='#cccccc'>
+    <td width=100>编号</td>
+    <td width=100>用户名称</td>
+    <td width=100>用户角色</td>
+    <td width=100>用户组别</td>
+    <td width=100>权限状态</td>
+  </tr>
+{% endif %}
+  <tr bgcolor='{% cycle "#ffccff" "ccffcc" %}'>
+    <td>{{p.id}}</td>
+    <td>{{p.name}}</td>
+    <td>{{p.role}}</td>
+    <td>{{p.group}}</td>
+    <td>{{p.privilege}}</td>
+  </tr>
+{% if forloop.last %}
+</table>
+{% endif %}
+{% endfor %}
+{% endblock %}
+

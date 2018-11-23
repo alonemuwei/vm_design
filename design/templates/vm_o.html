@@ -1,0 +1,77 @@
+<!--user.html-->
+{% extends 'base_o.html' %}
+{% block title %}用户管理{% endblock %}
+{% block headmessage %} 
+{% endblock %}
+{% block content %} 
+{% load staticfiles %}
+<div class="pic"><img src="{% static "images/administration.png"  %}" width=150></div>
+{% for p in openstack_vm %}
+{% if forloop.first %}
+<table>
+  <tr bgcolor='#cccccc'>
+    <td width=250>虚拟机名字</td>
+    <td width=120>操作系统</td>
+    <td width=40>位数</td>
+    <td width=40>CPU</td>
+    <td width=40>内存</td>
+    <td width=80>磁盘大小</td>
+    <td width=120>IP</td>
+    <td width=60>卷大小</td>
+     <td width=100>虚拟机状态</td>
+  </tr>
+{% endif %}
+  <tr bgcolor='{% cycle "#ffccff" "ccffcc" %}'>
+    <td>{{p.name}}</td>
+    <td>{{p.operation}}</td>
+    <td>{{p.bit}}</td>
+    <td>{{p.cpu}}</td>
+    <td>{{p.memory}}</td>
+    <td>{{p.disk}}</td>
+    <td>{{p.ip}}</td>
+    <td>{{p.volume}}</td>
+    <td>{{p.vstatus}}</td>
+  </tr>
+{% if forloop.last %}
+</table>
+{% endif %}
+{% endfor %}
+<br>
+<div class='container'>
+<div class='row'>
+<div class='col-md-8'>
+<div class='panel panel-default'>
+<div class='panel-heading' aign=center>
+<form name='build' action='/del' method='GET'>
+	 <label for='vmname'>虚拟机名字</label>
+        <select name='vmname'>
+        {% for p in openstack_vm %}
+         <option value='{{p.name}}'>{{p.name}}</option>
+         {% endfor %}
+        </select>	
+	<input type='submit' value='删除'>	
+</form>
+<br>
+<form name='build' action='/close' method='GET'>
+         <label for='vmname'>虚拟机名字</label>
+        <select name='vmname'>
+        {% for p in openstack_vm %}
+         <option value='{{p.name}}'>{{p.name}}</option>
+         {% endfor %}
+        </select>
+        <input type='submit' value='关闭'>
+</form>
+<br>
+<form name='build' action='/open' method='GET'>
+         <label for='vmname'>虚拟机名字</label>
+        <select name='vmname'>
+        {% for p in openstack_vm %}
+         <option value='{{p.name}}'>{{p.name}}</option>
+         {% endfor %}
+        </select>
+        <input type='submit' value='开启'>
+</form>
+
+
+{% endblock %}
+
